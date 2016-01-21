@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Taskmanager</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+        <script>
+        function goBack() {
+            window.history.back();
+        }
+        </script>
+</head>
+<body>
+        <form method="post" action="/" id="forma">
+          Taskmanager:<br>
+         Naslov taska: <input type="text" name="naslov"><br>
+         Sporocilo (obvezno): <textarea name="sporocilo" form="forma" rows="4" cols="50"> </textarea>
+            <br>
+            <input  type="submit" value="Dodaj" >
+            <br>
+            <br>
+            {% if napaka %} {{ napaka }}
+             <button onclick="goBack()">Pojdi nazaj</button>
+            {% else %}
+                {% for vnos in vnosi %}
+
+                 <a href="/vnos/{{vnos.key.id()}}">{{vnos.naslov}} {%  if vnos.je_koncan %} (zakljucen) {% endif %}</a> <br>
+                {% endfor %}
+            {% endif %}
+            <br>
+
+</form>
+</body>
+</html>
